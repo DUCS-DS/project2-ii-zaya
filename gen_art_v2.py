@@ -77,6 +77,7 @@ for i in range(num_nodes):
     angle = radians(random.randint(0, 359))
     nodes.append(Node(x, y, speed, angle))
 
+nodes.sort(key=lambda node: node.x)
 # the game loop: (press q to quit)
 quit = False
 while not quit:
@@ -99,7 +100,7 @@ while not quit:
 
     for i, node1 in enumerate(nodes):
         x1, y1 = node1.x, node1.y
-        for node2 in nodes[i + 1 :]:
+        for node2 in nodes[i + 1 : i+ 21]:
             x2, y2 = node2.x, node2.y
             d_squared = (x1 - x2) ** 2 + (y1 - y2) ** 2
             if d_squared < thresh:
@@ -112,3 +113,8 @@ while not quit:
     print(clock.get_fps())
 
 pygame.quit()
+
+
+#Question 1: If you were not already running at 60 fps, how much improvement did you get?
+#When we imporved the runtime the first time, I was running at 40fps. Now I get a steady 59fps
+
